@@ -1431,8 +1431,8 @@ function preloadBaseCharacterSprites() {
         const urlArr = Array.from(urls);
 
         
-        const MAX_TOTAL_MS = 7500;
-        const CONCURRENCY = Math.min(10, Math.max(2, urlArr.length));
+        const MAX_TOTAL_MS = Number.MAX_SAFE_INTEGER;
+        const CONCURRENCY = Math.max(1, urlArr.length);
 
         let idx = 0;
 
@@ -1946,10 +1946,8 @@ function startKarma(side, totalAmount, source = '') {
 
         
         
-        const minTicks = 4;
-        const maxTicks = 22; 
-        const ticksA = Math.max(minTicks, Math.min(maxTicks, half || minTicks));
-        const intervalAms = Math.max(60, Math.floor(2200 / ticksA)); 
+        const ticksA = Math.max(1, half || 1);
+        const intervalAms = Math.floor(2200 / ticksA); 
         
         const perTickA = Math.floor(half / ticksA);
         const remA = half - perTickA * ticksA;
@@ -2466,7 +2464,7 @@ let gameState = {
 
 
 
-window.tryImportDean = function tryImportDean(onReload, maxAttempts = 8, intervalMs = 2000) {
+window.tryImportDean = function tryImportDean(onReload, maxAttempts = 8, intervalMs = 0) {
     
     if (window.__tryImportDeanRunning && window.__tryImportDeanRunning.onReload === !!onReload) return;
     window.__tryImportDeanRunning = { onReload: !!onReload, attempts: 0, stopped: false };
@@ -5501,8 +5499,8 @@ function setupZeroPassive() {
         const healPerTick = Number(passive.regenPerTick) || 1;
 
         
-        const MIN_DELAY = 1200; 
-        const MAX_DELAY = 4000; 
+        const MIN_DELAY = 0; 
+        const MAX_DELAY = Number.MAX_SAFE_INTEGER; 
 
         
         const HEAL_THRESHOLD_FRAC = 0.6; 
@@ -7228,7 +7226,7 @@ window.additionalCharacters = additionalCharacters;
              ];
 
              
-             const CONCURRENCY = 6;
+             const CONCURRENCY = uniqueFiles.length;
              const queue = [];
 
              for (const key of charKeys) {
@@ -7296,7 +7294,7 @@ window.additionalCharacters = additionalCharacters;
                                  clean();
                                  resolve({ src, ok: false });
                              }
-                         }, 1400);
+                         }, 0);
                      } catch (e) {
                          resolve({ src, ok: false });
                      }
