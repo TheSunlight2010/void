@@ -8,9 +8,9 @@
     <link rel="preload" href="sunlight.png" as="image">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Music-list special visuals for extras screen */
+        
         .music-item.purple-sparkle {
-            /* richer full purple background */
+            
             background: linear-gradient(180deg, rgba(128,0,128,0.14), rgba(88,0,88,0.10));
             color: #fff;
             position: relative;
@@ -22,7 +22,7 @@
         }
         .music-item.purple-sparkle:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(160,40,200,0.18), 0 0 28px rgba(255,200,255,0.12); }
 
-        /* animated sparkles: brighter, more visible and slightly faster */
+        
         .music-item.purple-sparkle::after {
             content: "";
             position: absolute;
@@ -41,7 +41,7 @@
             filter: drop-shadow(0 0 6px rgba(220,160,255,0.6));
         }
 
-        /* add a fiery gold/purple outline glow using an extra pseudo element */
+        
         .music-item.purple-sparkle::before {
             content: "";
             position: absolute;
@@ -62,7 +62,7 @@
             100% { opacity: 0; transform: translateY(0) scale(0.96); }
         }
 
-        /* half purple visual (left half purple, right half normal) */
+        
         .music-item.half-purple {
             background: linear-gradient(90deg,
                 rgba(128,0,128,0.18) 0% 50%,
@@ -77,7 +77,7 @@
         }
         .music-item.half-purple:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(160,60,200,0.12); }
 
-        /* make track text pop on purple items */
+        
         .music-item.purple-sparkle .track-name,
         .music-item.half-purple .track-name {
             display: inline-block;
@@ -89,7 +89,7 @@
             z-index: 2;
         }
 
-        /* ensure play button stays visible above pseudo-element */
+        
         .music-item .game-button { position: relative; z-index: 3; }
     </style>
 </head>
@@ -1532,7 +1532,7 @@
                             get() { return origUA + ' Chrome/117.0.0.0 Safari/537.36'; },
                             configurable: true
                         });
-                    } catch (e) { /* cannot redefine in some browsers, ignore */ }
+                    } catch (e) {  }
                 }
                 // Provide userAgentData shim if missing (basic shape used by sites)
                 if (!navigator.userAgentData) {
@@ -1556,7 +1556,7 @@
                             },
                             configurable: true
                         });
-                    } catch (e) { /* ignore if cannot define */ }
+                    } catch (e) {  }
                 } else {
                     // ensure brands include Chromium/Google Chrome for consistency
                     try {
@@ -1598,7 +1598,7 @@
                     });
                     if (cssLink.sheet) loaded.add('css');
                 }
-            } catch (e) { /* ignore if DOM access fails */ }
+            } catch (e) {  }
 
             // Modules we want to load and wait for
             const modules = ['game.js', 'bio.js', 'effectshow.js', 'FINDME.js'];
@@ -1670,7 +1670,7 @@
                     setTimeout(() => {
                         try {
                             if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-                        } catch (e) { /* ignore */ }
+                        } catch (e) {  }
                     }, 420);
                 }
             }
@@ -1735,7 +1735,7 @@
                         try {
                             JSON.parse(b64FromBits);
                             return b64FromBits;
-                        } catch (ee) { /* fallthrough */ }
+                        } catch (ee) {  }
                     }
                 }
 
@@ -1743,8 +1743,8 @@
                     const dec = atob(trimmed);
                     JSON.parse(dec);
                     return dec;
-                } catch (e) { /* not base64-decoded JSON */ }
-            } catch (e) { /* ignore */ }
+                } catch (e) {  }
+            } catch (e) {  }
 
             const onlyBits = trimmed.replace(/[^01]/g, '');
             if (onlyBits.length >= 8) {
@@ -1754,7 +1754,7 @@
                     const dec = atob(b64FromBits);
                     JSON.parse(dec);
                     return dec;
-                } catch (e) { /* ignore */ }
+                } catch (e) {  }
             }
 
             throw new Error('Could not decode pasted data');
@@ -1985,7 +1985,7 @@
                 try {
                     const resp = await fetch('blocker.txt', { method: 'HEAD' });
                     if (resp && resp.ok) return;
-                } catch (err) { /* blocker absent — allow */ }
+                } catch (err) {  }
                 try {
                     const mod = await import('./stainless.js');
                     if (mod && typeof mod.default === 'function') {
@@ -2003,7 +2003,7 @@
                         if (window.gameState) window.gameState.stainlessConfirmed = true;
                         alert('Confirmed (fallback). Use The Knight in battle.');
                         location.reload();
-                    } catch (e) { /* ignore */ }
+                    } catch (e) {  }
                 }
             });
         }
@@ -2165,7 +2165,7 @@
                         insertParent.appendChild(wrapper);
                     }
                 } catch (e) {
-                    try { insertParent.appendChild(wrapper); } catch (ee) { /* ignore */ }
+                    try { insertParent.appendChild(wrapper); } catch (ee) {  }
                 }
             }
         }
