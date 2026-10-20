@@ -2312,9 +2312,9 @@ function startKarma(side, totalAmount, source = '') {
     }
 }
 
-// KARMA reflection: when the afflicted side deals damage to a target, they take
-// a percentage of that damage themself. No timers — resolved in normal turn flow,
-// so it never locks the player out of input.
+
+
+
 function applyKarmaReflection(attackerSide, damageDealt) {
     try {
         if (!['player','enemy'].includes(attackerSide)) return;
@@ -2481,7 +2481,7 @@ function getSpecialBattleTheme(playerName, enemyName) {
         return 'mus_minigame.mp3';
     }
 
-    // Her — Fyre involved in battle (specific matchups take priority)
+    
     const herHasFyre = (playerName === 'Fyre' || enemyName === 'Fyre');
     if (herHasFyre) {
         const fyreOpponent = (playerName === 'Fyre') ? enemyName : playerName;
@@ -2495,7 +2495,7 @@ function getSpecialBattleTheme(playerName, enemyName) {
         return 'Her.mp3';
     }
 
-    // SICK BEATS — Maturity vs Boundless
+    
     if ((playerName === 'Maturity' && enemyName === 'Boundless') ||
         (playerName === 'Boundless' && enemyName === 'Maturity')) {
         return 'SICK BEATS.mp3';
@@ -3517,13 +3517,13 @@ function showScreen(screenName) {
     }
 }
 
-// Normalize a character name into the key format used by voiceline filenames.
+
 function normalizeVoicelineKey(name) {
     return String(name || '').toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9_]/g, '');
 }
 
-// Determine which intro voiceline action(s) an actor will speak against an opponent.
-// Mirrors the branching in startBattle's intro-voiceline block.
+
+
 function resolveIntroActions(actor, opponent) {
     const an = (actor && actor.name) || '';
     const on = (opponent && opponent.name) || '';
@@ -3585,7 +3585,7 @@ function resolveIntroActions(actor, opponent) {
     return ['intro'];
 }
 
-// Compute the battle music file used by playBattleMusic without playing it.
+
 function computeBattleMusicSrc(player, enemy, level, isHouseArrestBattle) {
     if (gameState.lunaInfected) return 'Anticipation (Luna Mix).mp3';
     const specialTheme = getSpecialBattleTheme(player.name, enemy.name);
@@ -3600,7 +3600,7 @@ function computeBattleMusicSrc(player, enemy, level, isHouseArrestBattle) {
     return 'Anticipation (4).mp3';
 }
 
-// Load a list of audio files and resolve once they're ready (or on timeout).
+
 function preloadBattleAudio(files, perFileTimeout = 2000) {
     return new Promise((resolve) => {
         if (!files || !files.length) return resolve();
@@ -4307,9 +4307,9 @@ async function startBattle(playerCharacterKey) {
         gameState.blitzUsesFallenAngel = false;
     }
 
-    // Show a "WAITING..." screen while the correct battle audio is loaded, so the
-    // fight starts smoothly. We resolve which intro voicelines and battle music this
-    // matchup will use, preload them, then reveal the arena.
+    
+    
+    
     try {
         const wOverlay = document.getElementById('waiting-overlay');
         if (wOverlay) wOverlay.style.display = 'flex';
@@ -4337,7 +4337,7 @@ async function startBattle(playerCharacterKey) {
         collectVoicelines(_pName, resolveIntroActions(gameState.player, gameState.enemy));
         collectVoicelines(_eName, resolveIntroActions(gameState.enemy, gameState.player));
 
-        // Let the black screen paint before we start loading heavy audio.
+        
         await new Promise(r => setTimeout(r, 120));
         await preloadBattleAudio(needed);
 
@@ -4663,7 +4663,7 @@ function playBattleMusic(level, isHouseArrestBattle = false) {
         }
     }
 
-    // The Best Song — 1 in 1000 chance if the due song is Anticipation AND The Roden is fighting
+    
     const rodenInBattle = gameState.player?.name === 'The Roden' || gameState.enemy?.name === 'The Roden';
     const srcIsAnticipation =
         audio.src === 'Anticipation%20(4).mp3' || audio.src === 'Anticipation (4).mp3' ||
