@@ -3179,31 +3179,7 @@ function init() {
     
     
     
-    (async function updateIndexHtmlTimestamp() {
-        try {
-            const resp = await fetch('index.html', { cache: 'no-store' });
-            if (!resp.ok) return;
-            let text = await resp.text();
-            const marker = '<!-- BUILD_TIMESTAMP -->';
-            if (!text.includes(marker)) return;
-            const ts = String(Date.now());
-            const newText = text.replace(marker, ts);
-            
-            
-            await fetch('index.html', {
-                method: 'PUT',
-                headers: { 'Content-Type': 'text/html;charset=utf-8' },
-                body: newText
-            }).catch(()=>{  });
 
-            
-            const meta = document.getElementById('build-timestamp');
-            if (meta) meta.setAttribute('content', ts);
-        } catch (e) {
-            
-            console.error('Index timestamp update failed', e);
-        }
-    })();
     
     const appleWarning = document.getElementById('apple-warning');
     const appleWarningContinue = document.getElementById('apple-warning-continue');
