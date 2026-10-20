@@ -1557,7 +1557,7 @@ function preloadBaseCharacterSprites() {
 }
 
 
-window.__spritesPreloadPromise = preloadBaseCharacterSprites();
+window.__spritesPreloadPromise = Promise.resolve();
 
 function classifyCharacterByHealing(char, keyName = '') {
     if (!char || !Array.isArray(char.abilities)) return 'NEUTRAL';
@@ -8699,20 +8699,6 @@ return mapMona[act] || '';
      }
 
      
-     if (document.readyState === 'loading') {
-         document.addEventListener('DOMContentLoaded', () => {
-             preloadAllBattleVoicelines()
-                 .then(() => { try { console.clear(); } catch (e) {} })
-                 .catch(() => {});
-         });
-     } else {
-         
-         setTimeout(() => {
-             preloadAllBattleVoicelines()
-                 .then(() => { try { console.clear(); } catch (e) {} })
-                 .catch(() => {});
-         }, 120);
-     }
  })();
 
  
