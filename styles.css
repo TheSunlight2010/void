@@ -12,7 +12,7 @@
     padding: 0;
     box-sizing: border-box;
 
-    /* WebKit/Safari rendering parity with Blink */
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision;
@@ -23,10 +23,7 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
-/* Touch & GPU hints to improve scroll performance on touch devices:
-   - enable native momentum scrolling where applicable
-   - allow the browser to promote layers for transform/opacity changes
-   - reduce repaint churn by scoping touch-action to vertical panning */
+
 .character-grid,
 .shop-container,
 #music-list,
@@ -37,7 +34,7 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Promote interactive/visual-heavy items to their own compositing layers */
+
 .character-card,
 .music-item,
 .music-item.purple-sparkle,
@@ -50,7 +47,7 @@ html {
     -webkit-transform: translateZ(0);
 }
 
-/* Reduce paint pressure for transient pseudo-elements & portraits */
+
 .music-item.purple-sparkle::after,
 .character-portrait,
 .shop-portrait,
@@ -68,8 +65,8 @@ body {
     background: #000;
     color: #FFD700;
     font-family: 'Orbitron', monospace;
-    height: 100dvh; /* use dynamic viewport height for better mobile fit */
-    overflow: auto; /* allow scrolling if absolutely necessary but prefer fitting layout */
+    height: 100dvh; 
+    overflow: auto; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,11 +77,11 @@ body {
 .screen {
     display: none;
     width: 100%;
-    min-height: 100dvh; /* avoid fixed vh and use dynamic unit */
+    min-height: 100dvh; 
     position: absolute;
     top: 0;
     left: 0;
-    padding: 1rem; /* small padding so content won't be cut on tiny screens */
+    padding: 1rem; 
     box-sizing: border-box;
 }
 
@@ -271,9 +268,9 @@ body {
     border: 1px solid rgba(255, 215, 0, 0.18);
 }
 
-/* Classification label shown beneath level in character cards — now visible on cards */
+
 .class-display {
-    /* Show classification labels on cards */
+    
     display: block !important;
     box-sizing: border-box;
     max-width: 100%;
@@ -285,7 +282,7 @@ body {
     padding-right: 0.6rem;
     padding-left: 0.6rem;
 
-    /* visual styling for classification */
+    
     margin-top: 0.15rem;
     font-size: 0.78rem;
     font-weight: 800;
@@ -302,7 +299,7 @@ body {
     max-height: calc(100dvh - 160px);
     overflow-y: auto;
     padding: 0.8rem;
-    padding-bottom: 5.2rem; /* extra bottom padding so fixed back button doesn't overlap content */
+    padding-bottom: 5.2rem; 
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 215, 0, 0.5) rgba(255, 215, 0, 0.06);
 }
@@ -409,13 +406,13 @@ body {
     justify-content: space-between;
 }
 
-/* Glow variants for character cards */
+
 .character-card.parasite-glow {
     box-shadow:
         0 10px 26px rgba(255, 120, 200, 0.14),
         0 0 30px rgba(255, 200, 120, 0.06),
         inset 0 0 18px rgba(255,255,255,0.03);
-    /* rainbow animated border */
+    
     position: relative;
     overflow: visible;
 }
@@ -434,39 +431,39 @@ body {
     opacity: 0.95;
 }
 
-/* red glow for BRAWN (no heals) */
+
 .character-card.red-glow {
     box-shadow: 0 10px 30px rgba(200, 30, 30, 0.24), 0 0 24px rgba(255, 80, 80, 0.12), inset 0 0 12px rgba(180,40,40,0.05);
     border-color: rgba(200,30,30,0.9);
     transform: translateZ(0);
 }
 
-/* Enhanced SHS styling: richer border, subtle chrome badge, and adaptive tint that respects existing class glows */
+
 .character-card[data-shs="true"] {
     position: relative;
     overflow: visible;
     transition: transform 260ms ease, box-shadow 260ms ease;
     border-radius: 12px;
-    /* stronger base accent while preserving class colors */
+    
     box-shadow: 0 12px 36px rgba(255, 200, 80, 0.08), inset 0 0 22px rgba(255, 240, 200, 0.03);
     border: 1.5px solid rgba(255,215,0,0.18);
 }
-/* Extend existing class glows when SHS flag present for a richer combination */
+
 .character-card[data-shs="true"].red-glow {
-    /* stronger cinematic crimson chrome for SHS brawns */
+    
     position: relative;
     box-shadow:
         0 24px 64px rgba(180,20,20,0.36),
         0 0 56px rgba(255,100,100,0.16),
         inset 0 0 28px rgba(255,160,160,0.04);
     border: 1.5px solid rgba(220,48,48,0.55);
-    /* subtle metallic rim using conic gradient masked inside border */
+    
     background-image: linear-gradient(180deg, rgba(20,6,6,0.02), rgba(0,0,0,0.06)), radial-gradient(circle at 10% 10%, rgba(255,140,110,0.03), transparent 12%);
     transform: translateZ(0);
     transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
     border-radius: 12px;
 }
-/* add a thin chrome accent stripe for SHS brawns */
+
 .character-card[data-shs="true"].red-glow::before {
     content: '';
     position: absolute;
@@ -477,14 +474,14 @@ body {
     filter: blur(6px) saturate(1.05);
     opacity: 0.95;
 }
-/* tweak the SHS badge color when the card is a brawn to harmonize with the red treatment */
+
 .character-card[data-shs="true"].red-glow::after {
     background: linear-gradient(90deg, rgba(255,180,140,0.98), rgba(220,90,70,0.98));
     color: #120000;
     box-shadow: 0 6px 16px rgba(160,20,20,0.26), inset 0 0 6px rgba(255,255,255,0.06);
 }
 .character-card[data-shs="true"].green-glow {
-    /* richer verdant chrome for SHS self-supports */
+    
     position: relative;
     box-shadow:
         0 18px 46px rgba(18,120,48,0.28),
@@ -496,7 +493,7 @@ body {
     transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
     border-radius: 12px;
 }
-/* subtle green chrome glow stripe for SHS self-supports */
+
 .character-card[data-shs="true"].green-glow::before {
     content: '';
     position: absolute;
@@ -507,7 +504,7 @@ body {
     filter: blur(6px) saturate(1.05);
     opacity: 0.95;
 }
-/* tweak the SHS badge color when the card is a self-support to match green treatment */
+
 .character-card[data-shs="true"].green-glow::after {
     background: linear-gradient(90deg, rgba(200,255,210,0.95), rgba(120,230,140,0.95));
     color: #022b10;
@@ -515,7 +512,7 @@ body {
 }
 .character-card[data-shs="true"].parasite-glow { box-shadow: 0 16px 48px rgba(160,80,240,0.16), inset 0 0 30px rgba(255,240,255,0.04); }
 
-/* Decorative metallic stripe pseudo-element for SHS cards to feel "more designed" */
+
 .character-card[data-shs="true"]::before {
     content: '';
     position: absolute;
@@ -531,15 +528,15 @@ body {
     opacity: 0.9;
 }
 
-/* Small badge in the corner to denote "Secret" with a subtle gem look — color respects underlying class tint */
+
 .character-card[data-shs="true"]::after {
-    /* Use CSS escaped newlines (\A) and preserve them with white-space: pre to render line breaks */
+    
     content: "SOUL\A HEART\A SKY";
     position: absolute;
     left: 8px;
     top: 8px;
     font-size: 0.58rem;
-    line-height: 1.0; /* tighter line spacing for stacked badge text */
+    line-height: 1.0; 
     padding: 0.18rem 0.36rem;
     border-radius: 6px;
     font-weight: 900;
@@ -549,16 +546,16 @@ body {
     box-shadow: 0 6px 18px rgba(0,0,0,0.38), inset 0 0 8px rgba(255,255,255,0.18);
     transform: translateZ(0);
     pointer-events: none;
-    white-space: pre; /* ensure \A is rendered as newline */
+    white-space: pre; 
 }
 
-/* Slight hover lift specifically for SHS cards to emphasize premium feel */
+
 .character-card[data-shs="true"]:hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 20px 60px rgba(0,0,0,0.55), inset 0 0 26px rgba(255,240,200,0.04);
 }
 
-/* green glow for SELF-SUPPORT (multiple heals) */
+
 .character-card.green-glow {
     box-shadow: 0 10px 30px rgba(26, 160, 64, 0.22), 0 0 28px rgba(120, 230, 140, 0.12), inset 0 0 10px rgba(100,220,120,0.04);
     border-color: rgba(50,180,80,0.85);
@@ -569,10 +566,10 @@ body {
     width: 64px;
     height: 64px;
     object-fit: cover;
-    border-radius: 8px; /* square with slight rounding */
+    border-radius: 8px; 
     margin-bottom: 0.4rem;
     border: 2px solid #FFD700;
-    flex-shrink: 0; /* prevent squishing in tight grids */
+    flex-shrink: 0; 
 }
 
 .character-card h3 {
@@ -590,7 +587,7 @@ body {
     text-align: center;
 }
 
-/* Add styles for level and exp display in character cards */
+
 .level-display {
     font-size: 0.85rem;
     color: #FFD700;
@@ -609,9 +606,8 @@ body {
     font-weight: 400;
 }
 
-/* Battle layout redesign: player top-center, enemy bottom-center, HUD clear and compact */
-/* Constrain the overall battle UI so it never exceeds the viewport height on very tall screens.
-   Allow the battle panel itself to scroll when content would overflow. */
+
+
 .battle-ui {
     width: 94%;
     max-width: 1100px;
@@ -630,18 +626,18 @@ body {
     justify-items: center;
     padding: 0.25rem;
 
-    /* Ensure the battle UI fits within the viewport height */
+    
     max-height: calc(100dvh - 110px);
     box-sizing: border-box;
     overflow: hidden;
 }
 
-/* Make the central area scrollable while keeping player/enemy HUDs visible */
+
 .battle-ui > * {
     box-sizing: border-box;
 }
 
-/* Allow the middle container (abilities + log) to scroll when needed */
+
 @media (min-width: 0px) {
     .ability-panel, .battle-log {
         max-height: calc(100dvh - 320px);
@@ -650,7 +646,7 @@ body {
     }
 }
 
-/* Player area (top) */
+
 .player-section {
     grid-area: player;
     display: flex;
@@ -660,35 +656,35 @@ body {
     width: min(520px, 94%);
 }
 
-/* Ability panel sits beneath player */
+
 .ability-panel {
     grid-area: abilities;
     width: min(720px, 96%);
 }
 
-/* Centered VS text */
+
 .vs-text {
     grid-area: vs;
     margin: 0.2rem 0;
 }
 
-/* Battle log compact and centered */
+
 .battle-log {
     grid-area: log;
     width: clamp(260px, 80%, 560px);
 }
 
-/* Enemy area (bottom) */
+
 .enemy-section {
     grid-area: enemy;
     display: flex;
-    flex-direction: column-reverse; /* show HP above sprite visually when stacked */
+    flex-direction: column-reverse; 
     align-items: center;
     gap: 0.5rem;
     width: min(520px, 94%);
 }
 
-/* Keep HP bars constrained but readable */
+
 .player-section, .enemy-section {
     --hp-width: clamp(140px, 36vw, 360px);
 }
@@ -697,7 +693,7 @@ body {
     width: var(--hp-width);
 }
 
-/* Larger sprites but clamped to avoid overflow and never obscure UI */
+
 .battle-sprite {
     width: clamp(64px, 16vw, 160px);
     height: auto;
@@ -782,7 +778,7 @@ body {
     100% { opacity: 0; }
 }
 
-/* Responsive: on wide screens show side-by-side with clear spacing */
+
 @media (min-width: 980px) {
     .battle-ui {
         grid-template-areas:
@@ -820,7 +816,7 @@ body {
     }
 }
 
-/* Mobile stacked tweaks */
+
 @media (max-width: 480px) {
     .battle-ui {
         gap: 0.5rem;
@@ -906,7 +902,7 @@ body {
     transition: opacity 1s ease 1s;
 }
 
-/* Bleeding visual: health bar turns red and pulses slightly when bleeding */
+
 .health-bar.bleeding .health-fill {
     background: linear-gradient(90deg, #ff4b4b, #d90000);
     box-shadow: 0 0 10px rgba(255, 80, 80, 0.6), inset 0 0 8px rgba(255,120,120,0.12);
@@ -928,7 +924,7 @@ body {
     box-shadow: 0 0 12px rgba(106, 224, 255, .85), inset 0 0 8px rgba(235, 255, 255, .45);
 }
 
-/* KARMA visual: health bar turns magenta and pulses when KARMA is active */
+
 
 @keyframes bleed-pulse {
     0% { filter: brightness(1); transform: translateY(0); }
@@ -999,7 +995,7 @@ body {
     border-radius: 8px;
 }
 
-/* Healing ability visual: green highlight, stronger glow and subtle background tint */
+
 .ability-btn.frozen-cooldown {
     border-color: #8beaff;
     background: linear-gradient(135deg, rgba(41, 151, 185, .52), rgba(108, 225, 245, .2));
@@ -1025,7 +1021,7 @@ body {
     box-shadow: 0 6px 18px rgba(80,255,140,0.18), 0 0 22px rgba(120,255,180,0.14), inset 0 0 8px rgba(140,255,180,0.06);
 }
 
-/* Stronger hover for healing abilities */
+
 .ability-btn.healing-ability:hover:not(:disabled) {
     transform: scale(1.035);
     box-shadow: 0 10px 30px rgba(80,255,140,0.28), 0 0 36px rgba(120,255,180,0.18), inset 0 0 12px rgba(140,255,180,0.08);
@@ -1113,7 +1109,7 @@ body {
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
 }
 
-/* Add responsive adjustments for battle log positioning */
+
 @media (max-width: 768px) {
     .battle-log {
         max-height: clamp(70px, 12vh, 120px);
@@ -1135,7 +1131,7 @@ body {
     }
 }
 
-/* Background particles effect */
+
 body::before {
     content: '';
     position: absolute;
@@ -1150,7 +1146,7 @@ body::before {
     animation: pulse 4s ease-in-out infinite;
 }
 
-/* Purple glow marks the enemy in Luna's challenge. */
+
 .luna-infected {
     filter: drop-shadow(0 0 12px rgba(190, 90, 255, 0.8)) drop-shadow(0 0 26px rgba(135, 35, 220, 0.55));
 }
@@ -1167,7 +1163,7 @@ body::before {
     50% { opacity: 0.45; }
 }
 
-/* Responsive improvements for all screens */
+
 @media (max-width: 768px) {
     .title {
         font-size: clamp(2rem, 10vw, 5rem);
@@ -1217,7 +1213,7 @@ body::before {
     }
 }
 
-/* Add responsive shop styles */
+
 @media (max-width: 768px) {
     .shop-grid {
         grid-template-columns: 1fr;
@@ -1261,8 +1257,7 @@ body::before {
     }
 }
 
-/* Visual highlight for Higher-Plane characters in character listings:
-   faint golden glow and subtle inner lift to set them apart without overwhelming the UI */
+
 .character-card[data-higher-plane="true"] {
     box-shadow:
         0 6px 18px rgba(255, 200, 80, 0.06),
@@ -1350,7 +1345,7 @@ body::before {
     }
 }
 
-/* Scrollbar styling for shop container */
+
 .shop-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -1369,7 +1364,7 @@ body::before {
     background: rgba(255, 215, 0, 0.6);
 }
 
-/* Add responsive character grid styles */
+
 @media (max-width: 768px) {
     .character-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -1475,7 +1470,7 @@ body::before {
     }
 }
 
-/* Add scrollbar styling for character grid */
+
 .character-grid::-webkit-scrollbar {
     width: 6px;
 }
@@ -1494,7 +1489,7 @@ body::before {
     background: rgba(255, 215, 0, 0.6);
 }
 
-/* Add responsive battle styles */
+
 @media (max-width: 768px) {
     .battle-ui {
         flex-direction: column;
@@ -1502,7 +1497,7 @@ body::before {
         width: 96%;
     }
     
-    /* Keep health bars above sprites by stacking vertically in player/enemy sections on small screens */
+    
     .player-section, .enemy-section {
         flex-direction: column;
         align-items: center;
@@ -1542,7 +1537,7 @@ body::before {
         gap: 0.6rem;
     }
     
-    /* Ensure health bars remain above characters at smallest sizes as well */
+    
     .player-section, .enemy-section {
         flex-direction: column;
         gap: 0.6rem;
@@ -1674,7 +1669,7 @@ body::before {
     }
 }
 
-/* Add touch-friendly improvements */
+
 @media (hover: none) and (pointer: coarse) {
     .ability-btn {
         padding: clamp(0.5rem, 2.4vw, 0.9rem);
@@ -1688,30 +1683,25 @@ body::before {
     }
 }
 
-/* Ensure ability grid buttons always fit inside the ability panel:
-   - slightly smaller min column width for denser layouts
-   - enforce equal-height rows so buttons don't overflow vertically
-   - make the panel clip any accidental overflow */
+
 .ability-panel {
     box-sizing: border-box;
-    overflow-y: auto; /* allow vertical scrolling when content is too tall */
-    max-height: calc(40dvh); /* cap height so panel fits on-screen and becomes scrollable */
-    -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
-    padding-right: 0.4rem; /* avoid clipped scrollbar content on small screens */
+    overflow-y: auto; 
+    max-height: calc(40dvh); 
+    -webkit-overflow-scrolling: touch; 
+    padding-right: 0.4rem; 
 }
 
 .ability-panel .abilities-grid {
     display: grid;
-    /* allow tighter minimums so more columns can fit on narrow viewports,
-       and remove forced equal-row stretching so buttons can shrink vertically
-       rather than forcing the panel to become scrollable */
+    
     grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
     gap: 0.4rem;
     align-items: start;
     justify-items: stretch;
-    /* fallback to let items determine their own height */
+    
     grid-auto-rows: auto;
-    /* keep touch-friendly spacing */
+    
     padding-bottom: 2px;
 }
 
@@ -1726,7 +1716,7 @@ body::before {
     text-overflow: ellipsis;
 }
 
-/* Add high DPI/Retina display optimizations */
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .battle-sprite {
         image-rendering: -webkit-optimize-contrast;
@@ -1734,7 +1724,7 @@ body::before {
     }
 }
 
-/* Victory Screen Styles */
+
 .victory-screen {
     position: fixed;
     top: 0;
@@ -1898,7 +1888,7 @@ body::before {
     }
 }
 
-/* Game Over Screen Styles */
+
 .game-over-screen {
     position: fixed;
     top: 0;
@@ -2035,7 +2025,7 @@ body::before {
     transition: opacity 0.1s ease;
 }
 
-/* Vulnerable effect-badge: sky-blue/cyan badge to indicate target takes +25% damage */
+
 .effect-badge.vulnerable {
     background: linear-gradient(90deg, #9fe9ff 0%, #5ec8ff 100%);
     box-shadow: 0 10px 22px rgba(94,200,255,0.22), inset 0 0 10px rgba(220,245,255,0.06);
@@ -2044,7 +2034,7 @@ body::before {
     text-shadow: 0 1px 0 rgba(255,255,255,0.04);
 }
 
-/* Ability sublabel: small contextual descriptor under ability name */
+
 .ability-sublabel {
     display: block;
     font-size: 0.65rem;
@@ -2058,7 +2048,7 @@ body::before {
     pointer-events: none;
 }
 
-/* Color hints via simple class matching (JS-controlled content determines text) */
+
 .ability-sublabel.dmghint { color: #ff6b6b; }
 .ability-sublabel.healhint { color: #6bff6b; }
 .ability-sublabel.karmahint { color: #ffaa00; }
@@ -2067,7 +2057,7 @@ body::before {
 .ability-sublabel.vulnhint { color: #ffaa44; }
 .ability-sublabel.cursedhint { color: #aa44ff; }
 
-/* Responsive adjustments for victory/game over screens */
+
 @media (max-width: 768px) {
     .victory-content,
     .game-over-content {
@@ -2108,7 +2098,7 @@ body::before {
     }
 }
 
-/* Hide textual descriptions in shop and character cards to remove on-screen descriptions */
+
 .shop-desc,
 .character-desc {
     display: none !important;
@@ -2121,11 +2111,7 @@ body::before {
 
 
 
-/* Title-screen-only update notice:
-   - Hidden by default so it does not appear on other screens.
-   - When the title screen becomes active, the notice becomes fixed
-     to the viewport bottom-right (above safe-area) and visible.
-*/
+
 #update-notice {
     display: none;
     font-family: Orbitron, monospace;
@@ -2139,10 +2125,10 @@ body::before {
     max-width: calc(40vw);
     text-align: right;
     z-index: 13000;
-    pointer-events: none; /* non-interactive notice */
+    pointer-events: none; 
 }
 
-/* Show and position the update notice only when the title screen is active */
+
 #title-screen.active #update-notice {
     display: block;
     position: fixed;
@@ -2151,8 +2137,7 @@ body::before {
     pointer-events: auto;
 }
 
-/* Keep the Extras screen back button fixed to the bottom center of the viewport
-   when the extras screen is active so it remains reachable regardless of scroll. */
+
 #extras-screen.active #extras-back {
     position: fixed;
     left: 50%;
@@ -2161,7 +2146,7 @@ body::before {
     z-index: 14000;
 }
 
-/* Slight responsive tweak so the notice never overflows on very small screens */
+
 @media (max-width: 420px) {
     #title-screen.active #update-notice {
         right: 8px;
@@ -2171,7 +2156,7 @@ body::before {
     }
 }
 
-/* Bio popup tab buttons */
+
 .bio-tab {
     background: rgba(255,215,0,0.08);
     border: 1px solid rgba(255,215,0,0.25);
@@ -2196,14 +2181,14 @@ body::before {
     box-shadow: 0 0 12px rgba(255,215,0,0.3);
 }
 
-/* Ensure the shop grid content can't be hidden behind the fixed back button on very short viewports */
+
 @media (max-height: 520px) {
     .shop-container {
         padding-bottom: 7.2rem;
     }
 }
 
-/* The Best Song — SUPER COOL but also goofy */
+
 .music-item.the-best-song {
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.7);
@@ -2221,7 +2206,7 @@ body::before {
     overflow: hidden;
     animation: the-best-bg-spin 5s linear infinite;
 }
-/* goofy scanline / window slats */
+
 .music-item.the-best-song::after {
     content: "";
     position: absolute;
@@ -2236,7 +2221,7 @@ body::before {
     pointer-events: none;
     z-index: 1;
 }
-/* the goofy wiggling title in judgement font */
+
 .music-item.the-best-song .track-name {
     position: relative;
     z-index: 2;
